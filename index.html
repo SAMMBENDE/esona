@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esona - Premium Vacation Rentals</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ff385c" />
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Esona" />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <i class="fas fa-home"></i>
+          <span>Esona</span>
+        </div>
+        <div class="loading-spinner"></div>
+        <p>Finding your perfect stay...</p>
+      </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Progressive Web App Install Prompt -->
+    <div id="pwa-install-prompt" class="pwa-prompt hidden">
+      <div class="pwa-content">
+        <div class="pwa-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="pwa-text">
+          <h3>Install Esona App</h3>
+          <p>Get the full experience with our mobile app!</p>
+        </div>
+        <div class="pwa-actions">
+          <button class="pwa-install-btn">Install</button>
+          <button class="pwa-dismiss-btn">Maybe Later</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Chat Widget -->
+    <div id="chat-widget" class="chat-widget">
+      <div class="chat-toggle" id="chat-toggle">
+        <i class="fas fa-comments"></i>
+        <span class="chat-badge" id="chat-badge">1</span>
+      </div>
+      <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+          <div class="chat-agent">
+            <div class="agent-avatar">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="agent-info">
+              <span class="agent-name">Esona Support</span>
+              <span class="agent-status">Online</span>
+            </div>
+          </div>
+          <button class="chat-close" id="chat-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-message bot-message">
+            <div class="message-content">
+              Hi! Welcome to Esona! 👋 How can I help you find your perfect stay
+              today?
+            </div>
+            <div class="message-time">Just now</div>
+          </div>
+        </div>
+        <div class="chat-input-container">
+          <div class="chat-suggestions">
+            <button
+              class="suggestion-btn"
+              onclick="sendQuickMessage('I need help finding a property')"
+            >
+              🏠 Find property
+            </button>
+            <button
+              class="suggestion-btn"
+              onclick="sendQuickMessage('How do I make a booking?')"
+            >
+              📅 How to book
+            </button>
+            <button
+              class="suggestion-btn"
+              onclick="sendQuickMessage('I have a question about pricing')"
+            >
+              💰 Pricing info
+            </button>
+          </div>
+          <div class="chat-input-wrapper">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your message..."
+            />
+            <button class="chat-send" id="chat-send">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Help -->
+    <div id="shortcuts-modal" class="modal">
+      <div class="modal-content shortcuts-content">
+        <span class="close-modal">&times;</span>
+        <h2>Keyboard Shortcuts</h2>
+        <div class="shortcuts-grid">
+          <div class="shortcut-item">
+            <kbd>Ctrl</kbd> + <kbd>F</kbd>
+            <span>Search properties</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>Esc</kbd>
+            <span>Close modals</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>?</kbd>
+            <span>Show shortcuts</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>Ctrl</kbd> + <kbd>K</kbd>
+            <span>Quick actions</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>H</kbd>
+            <span>Go home</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>F</kbd>
+            <span>Toggle favorites</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Command Palette -->
+    <div id="command-palette" class="command-palette hidden">
+      <div class="command-input-wrapper">
+        <i class="fas fa-search command-icon"></i>
+        <input
+          type="text"
+          id="command-input"
+          placeholder="Type a command or search..."
+        />
+      </div>
+      <div class="command-results" id="command-results">
+        <div class="command-group">
+          <div class="command-group-title">Quick Actions</div>
+          <div class="command-item" data-action="search">
+            <i class="fas fa-search"></i>
+            <span>Search Properties</span>
+          </div>
+          <div class="command-item" data-action="favorites">
+            <i class="fas fa-heart"></i>
+            <span>View Favorites</span>
+          </div>
+          <div class="command-item" data-action="profile">
+            <i class="fas fa-user"></i>
+            <span>User Profile</span>
+          </div>
+          <div class="command-item" data-action="help">
+            <i class="fas fa-question-circle"></i>
+            <span>Help Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smart Search Suggestions -->
+    <div id="search-suggestions" class="search-suggestions hidden">
+      <div class="suggestions-header">
+        <h3>Popular Destinations</h3>
+      </div>
+      <div class="suggestions-list" id="suggestions-list">
+        <!-- Dynamic suggestions will be loaded here -->
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <i class="fas fa-home"></i>
+            <span>Esona</span>
+          </div>
+          <div class="nav-links">
+            <a href="#" class="nav-link">Explore</a>
+            <a href="#" class="nav-link">Saved</a>
+            <a href="#" class="nav-link">Trips</a>
+            <a href="#" class="nav-link">Host</a>
+          </div>
+          <div class="user-menu">
+            <button class="menu-btn" id="user-menu-btn">
+              <i class="fas fa-bars"></i>
+              <i class="fas fa-user-circle"></i>
+            </button>
+            <div class="user-dropdown" id="user-dropdown">
+              <div class="user-info" id="user-info" style="display: none">
+                <div class="user-avatar">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                  <span class="user-name" id="user-name"></span>
+                  <span class="user-email" id="user-email"></span>
+                </div>
+              </div>
+              <div class="auth-buttons" id="auth-buttons">
+                <button class="auth-btn login-btn" onclick="showLoginModal()">
+                  Login
+                </button>
+                <button
+                  class="auth-btn register-btn"
+                  onclick="showRegisterModal()"
+                >
+                  Sign up
+                </button>
+              </div>
+              <div
+                class="user-menu-items"
+                id="user-menu-items"
+                style="display: none"
+              >
+                <a href="#" class="menu-item"
+                  ><i class="fas fa-user"></i> Profile</a
+                >
+                <a href="#" class="menu-item"
+                  ><i class="fas fa-heart"></i> Favorites</a
+                >
+                <a href="#" class="menu-item"
+                  ><i class="fas fa-suitcase"></i> Trips</a
+                >
+                <a href="#" class="menu-item"
+                  ><i class="fas fa-home"></i> Host Dashboard</a
+                >
+                <a href="#" class="menu-item"
+                  ><i class="fas fa-cog"></i> Settings</a
+                >
+                <hr />
+                <a href="#" class="menu-item logout-btn" onclick="logout()"
+                  ><i class="fas fa-sign-out-alt"></i> Logout</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-container">
+        <h1 class="hero-title">Find your perfect stay</h1>
+        <div class="search-bar">
+          <div class="search-field">
+            <label>Where</label>
+            <input
+              type="text"
+              placeholder="Search destinations"
+              id="location-input"
+            />
+          </div>
+          <div class="search-field">
+            <label>Check in</label>
+            <input type="date" id="checkin-input" />
+          </div>
+          <div class="search-field">
+            <label>Check out</label>
+            <input type="date" id="checkout-input" />
+          </div>
+          <div class="search-field">
+            <label>Guests</label>
+            <select id="guests-input">
+              <option value="1">1 guest</option>
+              <option value="2">2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+              <option value="5">5+ guests</option>
+            </select>
+          </div>
+          <button class="search-btn" onclick="searchProperties()">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+      <div class="container">
+        <div class="filters">
+          <button class="filter-btn active" data-type="all">All</button>
+          <button class="filter-btn" data-type="apartment">Apartments</button>
+          <button class="filter-btn" data-type="house">Houses</button>
+          <button class="filter-btn" data-type="villa">Villas</button>
+          <button class="filter-btn" data-type="cabin">Cabins</button>
+          <button class="filter-btn" data-type="beachfront">Beachfront</button>
+        </div>
+        <div class="sort-options">
+          <select id="sort-select">
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Properties Grid -->
+    <main class="main-content">
+      <div class="container">
+        <div class="properties-grid" id="properties-grid">
+          <!-- Properties will be dynamically loaded here -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Property Detail Modal -->
+    <div class="modal" id="property-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body" id="modal-body">
+          <!-- Property details will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="booking-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="booking-form">
+          <h2>Book Your Stay</h2>
+          <form id="booking-form">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" required />
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Check-in</label>
+                <input type="date" required />
+              </div>
+              <div class="form-group">
+                <label>Check-out</label>
+                <input type="date" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Number of Guests</label>
+              <select required>
+                <option value="">Select guests</option>
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="5">5+ guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Special Requests</label>
+              <textarea
+                rows="3"
+                placeholder="Any special requests or notes..."
+              ></textarea>
+            </div>
+            <div class="booking-summary">
+              <div class="total-cost">
+                <span>Total: <strong id="total-cost">$0</strong></span>
+              </div>
+              <button type="submit" class="book-btn">Confirm Booking</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+      <div class="modal-content auth-modal">
+        <span class="close-modal">&times;</span>
+        <div class="auth-header">
+          <h2>Welcome back</h2>
+          <p>Sign in to your account</p>
+        </div>
+
+        <div class="social-auth">
+          <button class="social-btn google-btn" onclick="loginWithGoogle()">
+            <i class="fab fa-google"></i>
+            Continue with Google
+          </button>
+          <button class="social-btn facebook-btn" onclick="loginWithFacebook()">
+            <i class="fab fa-facebook-f"></i>
+            Continue with Facebook
+          </button>
+          <button class="social-btn apple-btn" onclick="loginWithApple()">
+            <i class="fab fa-apple"></i>
+            Continue with Apple
+          </button>
+        </div>
+
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              id="login-email"
+              required
+              autocomplete="email"
+            />
+            <div class="input-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="login-password"
+              required
+              autocomplete="current-password"
+            />
+            <div class="input-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('login-password')"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember-me" />
+              <span class="checkmark"></span>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link" onclick="showForgotPassword()"
+              >Forgot password?</a
+            >
+          </div>
+
+          <button type="submit" class="auth-submit-btn">
+            <span class="btn-text">Sign in</span>
+            <div class="btn-loader" style="display: none">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+
+          <div class="auth-switch">
+            Don't have an account?
+            <a href="#" onclick="switchToRegister()">Sign up</a>
+          </div>
+        </form>
+
+        <!-- Two-Factor Authentication -->
+        <div id="two-factor-section" style="display: none">
+          <div class="auth-header">
+            <h3>Two-Factor Authentication</h3>
+            <p>Enter the 6-digit code from your authenticator app</p>
+          </div>
+          <form id="two-factor-form">
+            <div class="code-inputs">
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="0"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="1"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="2"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="3"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="4"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="code-input"
+                data-index="5"
+              />
+            </div>
+            <button type="submit" class="auth-submit-btn">Verify</button>
+            <button type="button" class="link-btn" onclick="resendCode()">
+              Resend code
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+      <div class="modal-content auth-modal">
+        <span class="close-modal">&times;</span>
+        <div class="auth-header">
+          <h2>Create account</h2>
+          <p>Join thousands of happy travelers</p>
+        </div>
+
+        <div class="social-auth">
+          <button class="social-btn google-btn" onclick="registerWithGoogle()">
+            <i class="fab fa-google"></i>
+            Continue with Google
+          </button>
+          <button
+            class="social-btn facebook-btn"
+            onclick="registerWithFacebook()"
+          >
+            <i class="fab fa-facebook-f"></i>
+            Continue with Facebook
+          </button>
+          <button class="social-btn apple-btn" onclick="registerWithApple()">
+            <i class="fab fa-apple"></i>
+            Continue with Apple
+          </button>
+        </div>
+
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+
+        <form id="register-form" class="auth-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input
+                type="text"
+                id="register-firstname"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input
+                type="text"
+                id="register-lastname"
+                required
+                autocomplete="family-name"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              id="register-email"
+              required
+              autocomplete="email"
+            />
+            <div class="input-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone (Optional)</label>
+            <input type="tel" id="register-phone" autocomplete="tel" />
+            <div class="input-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="register-password"
+              required
+              autocomplete="new-password"
+            />
+            <div class="input-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('register-password')"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+            <div class="password-strength">
+              <div class="strength-bar">
+                <div class="strength-fill"></div>
+              </div>
+              <span class="strength-text">Password strength</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              id="register-confirm-password"
+              required
+              autocomplete="new-password"
+            />
+            <div class="input-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('register-confirm-password')"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="agree-terms" required />
+              <span class="checkmark"></span>
+              I agree to the <a href="#" class="link">Terms of Service</a> and
+              <a href="#" class="link">Privacy Policy</a>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="marketing-emails" />
+              <span class="checkmark"></span>
+              Send me marketing emails about special offers and new properties
+            </label>
+          </div>
+
+          <button type="submit" class="auth-submit-btn">
+            <span class="btn-text">Create account</span>
+            <div class="btn-loader" style="display: none">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+
+          <div class="auth-switch">
+            Already have an account?
+            <a href="#" onclick="switchToLogin()">Sign in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgot-password-modal">
+      <div class="modal-content auth-modal">
+        <span class="close-modal">&times;</span>
+        <div class="auth-header">
+          <h2>Reset password</h2>
+          <p>Enter your email and we'll send you a reset link</p>
+        </div>
+
+        <form id="forgot-password-form" class="auth-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              id="forgot-email"
+              required
+              autocomplete="email"
+            />
+            <div class="input-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn">
+            <span class="btn-text">Send reset link</span>
+            <div class="btn-loader" style="display: none">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+
+          <div class="auth-switch">
+            Remember your password?
+            <a href="#" onclick="showLoginModal()">Sign in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Email Verification Modal -->
+    <div class="modal" id="email-verification-modal">
+      <div class="modal-content auth-modal">
+        <div class="auth-header">
+          <div class="verification-icon">
+            <i class="fas fa-envelope-open"></i>
+          </div>
+          <h2>Check your email</h2>
+          <p>
+            We've sent a verification link to
+            <span id="verification-email"></span>
+          </p>
+        </div>
+
+        <div class="verification-actions">
+          <button class="auth-submit-btn" onclick="closeModal()">Got it</button>
+          <button class="link-btn" onclick="resendVerification()">
+            Resend verification email
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div class="modal" id="wishlist-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="wishlist-header">
+          <h2>My Wishlist</h2>
+          <p>Your saved properties</p>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+          <!-- Wishlist items will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Comparison Modal -->
+    <div class="modal" id="comparison-modal">
+      <div class="modal-content comparison-content">
+        <span class="close-modal">&times;</span>
+        <div class="comparison-header">
+          <h2>Compare Properties</h2>
+          <button class="clear-comparison" onclick="clearComparison()">
+            Clear All
+          </button>
+        </div>
+        <div class="comparison-table" id="comparison-table">
+          <!-- Comparison table will be generated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Searches Modal -->
+    <div class="modal" id="recent-searches-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="recent-header">
+          <h2>Recent Searches</h2>
+          <button class="clear-searches" onclick="clearRecentSearches()">
+            Clear All
+          </button>
+        </div>
+        <div class="recent-searches-list" id="recent-searches-list">
+          <!-- Recent searches will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Tutorial Overlay -->
+    <div id="tutorial-overlay" class="tutorial-overlay hidden">
+      <div class="tutorial-content">
+        <div class="tutorial-step" id="tutorial-step">
+          <div class="tutorial-header">
+            <h3 id="tutorial-title">Welcome to Esona!</h3>
+            <button class="tutorial-skip" onclick="skipTutorial()">
+              Skip Tour
+            </button>
+          </div>
+          <div class="tutorial-body">
+            <p id="tutorial-text">
+              Let's take a quick tour to help you get started.
+            </p>
+          </div>
+          <div class="tutorial-footer">
+            <button
+              class="tutorial-btn tutorial-prev"
+              onclick="previousTutorialStep()"
+              disabled
+            >
+              Previous
+            </button>
+            <div class="tutorial-indicators" id="tutorial-indicators">
+              <!-- Dots will be generated here -->
+            </div>
+            <button
+              class="tutorial-btn tutorial-next"
+              onclick="nextTutorialStep()"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+        <div class="tutorial-spotlight" id="tutorial-spotlight"></div>
+      </div>
+    </div>
+
+    <!-- Voice Search Modal -->
+    <div class="modal" id="voice-search-modal">
+      <div class="modal-content voice-content">
+        <span class="close-modal">&times;</span>
+        <div class="voice-search-ui">
+          <div class="voice-animation" id="voice-animation">
+            <div class="voice-circle"></div>
+            <div class="voice-circle"></div>
+            <div class="voice-circle"></div>
+          </div>
+          <h2 id="voice-status">Tap to speak</h2>
+          <p id="voice-text">
+            Say something like "Find apartments in New York"
+          </p>
+          <button class="voice-btn" id="voice-btn">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <div class="voice-results" id="voice-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Filters Panel -->
+    <div id="advanced-filters" class="advanced-filters hidden">
+      <div class="filters-header">
+        <h3>Advanced Filters</h3>
+        <button class="filters-close" onclick="toggleAdvancedFilters()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="filters-content">
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-range">
+            <input type="range" id="price-min" min="0" max="1000" value="0" />
+            <input
+              type="range"
+              id="price-max"
+              min="0"
+              max="1000"
+              value="1000"
+            />
+            <div class="price-display">
+              <span>$<span id="price-min-val">0</span></span>
+              <span>$<span id="price-max-val">1000</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Amenities</label>
+          <div class="amenities-grid">
+            <label class="amenity-item">
+              <input type="checkbox" value="wifi" />
+              <i class="fas fa-wifi"></i>
+              <span>WiFi</span>
+            </label>
+            <label class="amenity-item">
+              <input type="checkbox" value="pool" />
+              <i class="fas fa-swimming-pool"></i>
+              <span>Pool</span>
+            </label>
+            <label class="amenity-item">
+              <input type="checkbox" value="parking" />
+              <i class="fas fa-car"></i>
+              <span>Parking</span>
+            </label>
+            <label class="amenity-item">
+              <input type="checkbox" value="kitchen" />
+              <i class="fas fa-utensils"></i>
+              <span>Kitchen</span>
+            </label>
+            <label class="amenity-item">
+              <input type="checkbox" value="pet-friendly" />
+              <i class="fas fa-paw"></i>
+              <span>Pet Friendly</span>
+            </label>
+            <label class="amenity-item">
+              <input type="checkbox" value="gym" />
+              <i class="fas fa-dumbbell"></i>
+              <span>Gym</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Instant Book</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="instant-book" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="filter-actions">
+          <button class="filter-reset" onclick="resetFilters()">Reset</button>
+          <button class="filter-apply" onclick="applyAdvancedFilters()">
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+      <div class="fab-main" id="fab-main">
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="fab-menu" id="fab-menu">
+        <button
+          class="fab-item"
+          onclick="showVoiceSearch()"
+          title="Voice Search"
+        >
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button class="fab-item" onclick="showWishlist()" title="Wishlist">
+          <i class="fas fa-heart"></i>
+        </button>
+        <button class="fab-item" onclick="showComparison()" title="Compare">
+          <i class="fas fa-balance-scale"></i>
+        </button>
+        <button
+          class="fab-item"
+          onclick="toggleAdvancedFilters()"
+          title="Advanced Filters"
+        >
+          <i class="fas fa-sliders-h"></i>
+        </button>
+        <button class="fab-item" onclick="startTutorial()" title="Take Tour">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Smart Recommendations -->
+    <div id="recommendations-section" class="recommendations-section hidden">
+      <div class="container">
+        <div class="recommendations-header">
+          <h2>Recommended for You</h2>
+          <p>Based on your recent activity and preferences</p>
+        </div>
+        <div class="recommendations-grid" id="recommendations-grid">
+          <!-- AI-powered recommendations will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Esona</h3>
+            <p>Your trusted partner for premium vacation rentals worldwide.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <a href="pages/help-center.html">Help Center</a>
+            <a href="pages/safety.html">Safety</a>
+            <a href="pages/cancellation.html">Cancellation</a>
+          </div>
+          <div class="footer-section">
+            <h4>Community</h4>
+            <a href="pages/host.html">Host</a>
+            <a href="pages/refer-friends.html">Refer Friends</a>
+            <a href="pages/gift-cards.html">Gift Cards</a>
+          </div>
+          <div class="footer-section">
+            <h4>About</h4>
+            <a href="pages/how-it-works.html">How it works</a>
+            <a href="pages/careers.html">Careers</a>
+            <a href="pages/privacy.html">Privacy</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Esona. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

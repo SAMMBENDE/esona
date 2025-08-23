@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Cards - Esona</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Esona</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Explore</a>
+                    <a href="#" class="nav-link">Saved</a>
+                    <a href="#" class="nav-link">Trips</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-gift"></i> Gift Cards</h1>
+                <p>Give the gift of travel. Perfect for any occasion and never expire.</p>
+            </div>
+
+            <div class="gift-card-hero">
+                <div class="gift-card-preview">
+                    <div class="gift-card-design">
+                        <div class="gift-card-header">
+                            <div class="gift-card-logo">
+                                <i class="fas fa-home"></i>
+                                <span>Esona</span>
+                            </div>
+                        </div>
+                        <div class="gift-card-content">
+                            <h3>Gift Card</h3>
+                            <div class="gift-card-amount">$100</div>
+                            <div class="gift-card-message">
+                                "Wishing you amazing travels!"
+                            </div>
+                        </div>
+                        <div class="gift-card-footer">
+                            <div class="gift-card-code">ESONA-XXXX-XXXX</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gift-card-info">
+                    <h2>The Perfect Gift for Any Traveler</h2>
+                    <ul class="gift-benefits">
+                        <li><i class="fas fa-infinity"></i> Never expires</li>
+                        <li><i class="fas fa-globe"></i> Use anywhere on Esona</li>
+                        <li><i class="fas fa-envelope"></i> Delivered instantly via email</li>
+                        <li><i class="fas fa-palette"></i> Customizable designs and messages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="gift-card-purchase">
+                <h2>Purchase a Gift Card</h2>
+                <div class="purchase-form">
+                    <div class="form-section">
+                        <h3>Choose Amount</h3>
+                        <div class="amount-options">
+                            <button class="amount-btn" data-amount="25">$25</button>
+                            <button class="amount-btn" data-amount="50">$50</button>
+                            <button class="amount-btn active" data-amount="100">$100</button>
+                            <button class="amount-btn" data-amount="200">$200</button>
+                            <button class="amount-btn" data-amount="500">$500</button>
+                            <div class="custom-amount">
+                                <input type="number" placeholder="Custom amount" min="10" max="2000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Gift Card Design</h3>
+                        <div class="design-options">
+                            <div class="design-option active" data-design="travel">
+                                <div class="design-preview travel-theme"></div>
+                                <span>Travel Adventure</span>
+                            </div>
+                            <div class="design-option" data-design="beach">
+                                <div class="design-preview beach-theme"></div>
+                                <span>Beach Getaway</span>
+                            </div>
+                            <div class="design-option" data-design="city">
+                                <div class="design-preview city-theme"></div>
+                                <span>City Explorer</span>
+                            </div>
+                            <div class="design-option" data-design="mountain">
+                                <div class="design-preview mountain-theme"></div>
+                                <span>Mountain Retreat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Recipient Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Recipient Name</label>
+                                <input type="text" placeholder="Enter recipient's name">
+                            </div>
+                            <div class="form-group">
+                                <label>Recipient Email</label>
+                                <input type="email" placeholder="Enter recipient's email">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Personal Message (Optional)</label>
+                                <textarea placeholder="Add a personal message to your gift card" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Delivery Options</h3>
+                        <div class="delivery-options">
+                            <div class="delivery-option active">
+                                <input type="radio" name="delivery" id="instant" checked>
+                                <label for="instant">
+                                    <i class="fas fa-bolt"></i>
+                                    <div>
+                                        <strong>Send Instantly</strong>
+                                        <span>Delivered immediately after purchase</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="delivery-option">
+                                <input type="radio" name="delivery" id="scheduled">
+                                <label for="scheduled">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <div>
+                                        <strong>Schedule Delivery</strong>
+                                        <span>Choose a specific date and time</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="schedule-options" style="display: none;">
+                            <div class="form-group">
+                                <label>Delivery Date</label>
+                                <input type="date">
+                            </div>
+                            <div class="form-group">
+                                <label>Delivery Time</label>
+                                <select>
+                                    <option>12:00 AM</option>
+                                    <option>6:00 AM</option>
+                                    <option selected>9:00 AM</option>
+                                    <option>12:00 PM</option>
+                                    <option>6:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="purchase-summary">
+                        <div class="summary-item">
+                            <span>Gift Card Value:</span>
+                            <span>$100.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Service Fee:</span>
+                            <span>$0.00</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total:</span>
+                            <span>$100.00</span>
+                        </div>
+                        <button class="purchase-btn">Purchase Gift Card</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="redeem-section">
+                <h2>Redeem a Gift Card</h2>
+                <div class="redeem-form">
+                    <p>Have a gift card? Enter your gift card code below to add the credit to your account.</p>
+                    <div class="redeem-input">
+                        <input type="text" placeholder="Enter gift card code" id="gift-code">
+                        <button class="redeem-btn">Redeem</button>
+                    </div>
+                    <div class="redeem-help">
+                        <p><i class="fas fa-info-circle"></i> Gift card codes are typically 16 characters long (e.g., ESONA-1234-5678-9012)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gift-card-faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <h3>Do gift cards expire?</h3>
+                        <p>No, Esona gift cards never expire. The recipient can use them whenever they're ready to travel.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can gift cards be used for any booking?</h3>
+                        <p>Yes, gift cards can be used for any property booking on Esona worldwide. They can also be combined with other payment methods.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What if the booking costs more than the gift card value?</h3>
+                        <p>The recipient can pay the difference using any accepted payment method. Multiple gift cards can also be combined.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I get a refund for an unused gift card?</h3>
+                        <p>Gift cards are non-refundable once purchased. However, they never expire so they can be used at any time.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What if my gift card code doesn't work?</h3>
+                        <p>Contact our customer support team with your gift card details and we'll help resolve any issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Esona</h3>
+                    <p>Your trusted partner for premium vacation rentals worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="help-center.html">Help Center</a>
+                    <a href="safety.html">Safety</a>
+                    <a href="cancellation.html">Cancellation</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <a href="host.html">Host</a>
+                    <a href="refer-friends.html">Refer Friends</a>
+                    <a href="gift-cards.html">Gift Cards</a>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <a href="how-it-works.html">How it works</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="privacy.html">Privacy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Esona. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Amount selection
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                updateTotal(btn.dataset.amount);
+            });
+        });
+
+        // Design selection
+        document.querySelectorAll('.design-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.design-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+            });
+        });
+
+        // Delivery options
+        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const scheduleOptions = document.querySelector('.schedule-options');
+                if (radio.id === 'scheduled') {
+                    scheduleOptions.style.display = 'flex';
+                } else {
+                    scheduleOptions.style.display = 'none';
+                }
+            });
+        });
+
+        function updateTotal(amount) {
+            document.querySelector('.summary-item span:last-child').textContent = `$${amount}.00`;
+            document.querySelector('.summary-total span:last-child').textContent = `$${amount}.00`;
+        }
+    </script>
+</body>
+</html>

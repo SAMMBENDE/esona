@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer Friends - Esona</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Esona</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Explore</a>
+                    <a href="#" class="nav-link">Saved</a>
+                    <a href="#" class="nav-link">Trips</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-user-friends"></i> Refer Friends & Earn</h1>
+                <p>Share Esona with friends and both get travel credits when they complete their first stay.</p>
+            </div>
+
+            <div class="referral-hero">
+                <div class="referral-benefit">
+                    <div class="benefit-amount">$25</div>
+                    <p>You earn travel credits</p>
+                </div>
+                <div class="referral-plus">+</div>
+                <div class="referral-benefit">
+                    <div class="benefit-amount">$25</div>
+                    <p>Your friend gets travel credits</p>
+                </div>
+            </div>
+
+            <div class="how-it-works">
+                <h2>How It Works</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-share"></i>
+                            <span class="step-number">1</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Share Your Link</h3>
+                            <p>Send your unique referral link to friends via email, social media, or text message.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-user-plus"></i>
+                            <span class="step-number">2</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Friend Signs Up</h3>
+                            <p>Your friend creates an Esona account using your referral link.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-suitcase"></i>
+                            <span class="step-number">3</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>First Trip Completed</h3>
+                            <p>After your friend completes their first stay of $75 or more, you both get credits.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-gift"></i>
+                            <span class="step-number">4</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Earn Credits</h3>
+                            <p>Both you and your friend receive $25 in travel credits within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="referral-tools">
+                <h2>Share with Friends</h2>
+                <div class="share-section">
+                    <div class="referral-link">
+                        <label>Your Referral Link:</label>
+                        <div class="link-container">
+                            <input type="text" value="https://esona.com/r/your-unique-code" readonly id="referral-link">
+                            <button class="copy-btn" onclick="copyReferralLink()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="share-options">
+                        <h3>Share via:</h3>
+                        <div class="share-buttons">
+                            <button class="share-btn email">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </button>
+                            <button class="share-btn facebook">
+                                <i class="fab fa-facebook"></i>
+                                Facebook
+                            </button>
+                            <button class="share-btn twitter">
+                                <i class="fab fa-twitter"></i>
+                                Twitter
+                            </button>
+                            <button class="share-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                            <button class="share-btn sms">
+                                <i class="fas fa-sms"></i>
+                                Text Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="referral-stats">
+                <h2>Your Referral Activity</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Friends Invited</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Successful Referrals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">Credits Earned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">Available Credits</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2>Terms & Conditions</h2>
+                <div class="terms-content">
+                    <ul>
+                        <li>Both referrer and referred friend must be new to Esona</li>
+                        <li>Referred friend must complete a stay of $75 USD or more (before taxes and fees)</li>
+                        <li>Travel credits are issued within 24 hours of completing the qualifying stay</li>
+                        <li>Credits expire 1 year from the date of issue</li>
+                        <li>Credits can be used towards future bookings but cannot be transferred or redeemed for cash</li>
+                        <li>Limit of $500 in referral credits per calendar year</li>
+                        <li>Esona reserves the right to modify or terminate this program at any time</li>
+                        <li>Fraudulent activity or attempts to game the system will result in account suspension</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="referral-cta">
+                <h2>Start Referring Today</h2>
+                <p>The more friends you refer, the more you save on future trips!</p>
+                <button class="cta-button">Share Your Link</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Esona</h3>
+                    <p>Your trusted partner for premium vacation rentals worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="help-center.html">Help Center</a>
+                    <a href="safety.html">Safety</a>
+                    <a href="cancellation.html">Cancellation</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <a href="host.html">Host</a>
+                    <a href="refer-friends.html">Refer Friends</a>
+                    <a href="gift-cards.html">Gift Cards</a>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <a href="how-it-works.html">How it works</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="privacy.html">Privacy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Esona. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyReferralLink() {
+            const linkInput = document.getElementById('referral-link');
+            linkInput.select();
+            document.execCommand('copy');
+            
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
