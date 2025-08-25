@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Esona Admin - Add Property</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="admin-container">
+      <h1>Add New Property</h1>
+      <form id="admin-add-property-form" class="admin-form">
+        <label>Title: <input type="text" id="admin-title" required /></label>
+        <label
+          >Location: <input type="text" id="admin-location" required
+        /></label>
+        <label
+          >Type:
+          <select id="admin-type" required>
+            <option value="villa">Villa</option>
+            <option value="apartment">Apartment</option>
+            <option value="cabin">Cabin</option>
+            <option value="house">House</option>
+            <option value="beachfront">Beachfront</option>
+          </select>
+        </label>
+        <label
+          >Price per night: <input type="number" id="admin-price" required
+        /></label>
+        <label
+          >Guests: <input type="number" id="admin-guests" required
+        /></label>
+        <label
+          >Bedrooms: <input type="number" id="admin-bedrooms" required
+        /></label>
+        <label
+          >Bathrooms: <input type="number" id="admin-bathrooms" required
+        /></label>
+        <label>Image URL: <input type="url" id="admin-image" required /></label>
+        <label
+          >Description: <textarea id="admin-description" required></textarea>
+        </label>
+        <button type="submit" class="auth-submit-btn">Add Property</button>
+      </form>
+      <div id="admin-success-message" style="display: none"></div>
+      <a href="index.html">Back to Home</a>
+    </div>
+    <script src="admin.js"></script>
+  </body>
+</html>

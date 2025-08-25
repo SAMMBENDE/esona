@@ -260,10 +260,19 @@
                 <a href="#" class="menu-item logout-btn" onclick="logout()"
                   ><i class="fas fa-sign-out-alt"></i> Logout</a
                 >
+                <a
+                id="add-property-link"
+                href="#"
+                class="menu-item"
+                style="display: none"
+                onclick="showAddPropertyModal()"
+              >
+                <i class="fas fa-plus"></i> Add Property (Admin)
+              </a>
               </div>
+              
             </div>
           </div>
-        </div>
       </nav>
     </header>
 
@@ -987,6 +996,67 @@
         </div>
       </div>
     </div>
+
+    <!-- Add Property Modal (Admin only) -->
+    <div id="add-property-modal" class="modal" style="display: none;">
+  <div class="modal-content add-property-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <h2 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Property</h2>
+    <form id="add-property-form" class="add-property-form">
+      <div class="form-row">
+        <label>
+          <span>Title</span>
+          <input type="text" id="new-title" required />
+        </label>
+        <label>
+          <span>Location</span>
+          <input type="text" id="new-location" required />
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
+          <span>Type</span>
+          <select id="new-type" required>
+            <option value="villa">Villa</option>
+            <option value="apartment">Apartment</option>
+            <option value="cabin">Cabin</option>
+            <option value="house">House</option>
+            <option value="beachfront">Beachfront</option>
+          </select>
+        </label>
+        <label>
+          <span>Price per night</span>
+          <input type="number" id="new-price" required min="1" />
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
+          <span>Guests</span>
+          <input type="number" id="new-guests" required min="1" />
+        </label>
+        <label>
+          <span>Bedrooms</span>
+          <input type="number" id="new-bedrooms" required min="1" />
+        </label>
+        <label>
+          <span>Bathrooms</span>
+          <input type="number" id="new-bathrooms" required min="1" />
+        </label>
+      </div>
+      <label>
+        <span>Image URL</span>
+        <input type="url" id="new-image" required />
+      </label>
+      <label>
+        <span>Description</span>
+        <textarea id="new-description" required rows="3"></textarea>
+      </label>
+      <button type="submit" class="auth-submit-btn add-btn">
+        <i class="fas fa-plus"></i> Add Property
+      </button>
+    </form>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">

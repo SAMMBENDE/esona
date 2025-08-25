@@ -580,11 +580,13 @@ function handleBooking(e) {
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault()
-    const target = document.querySelector(this.getAttribute('href'))
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-      })
+    const href = this.getAttribute('href')
+    if (href && href.length > 1) {
+      // skip if href is just '#'
+      const target = document.querySelector(href)
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   })
 })
@@ -947,6 +949,17 @@ class AuthManager {
           firstName: 'Demo',
           lastName: 'User',
           email: 'demo@esona.com',
+          phone: '+1234567890',
+        },
+      },
+      {
+        email: 'sam.mbende2@gmail.com',
+        password: 'admin123',
+        user: {
+          id: 2,
+          firstName: 'Sam',
+          lastName: 'Mbende',
+          email: 'sam.mbende2@gmail.com',
           phone: '+1234567890',
         },
       },
@@ -2370,4 +2383,105 @@ function clearRecentSearches() {
     'Recent searches have been cleared',
     'info'
   )
+}
+
+// --- ADMIN ADD PROPERTY FEATURE ---
+
+// Show "Add Property" link only for admin
+function updateAdminUI() {
+  const addPropertyLink = document.getElementById('add-property-link')
+  if (
+    authManager.currentUser &&
+    authManager.currentUser.email === 'sam.mbende2@gmail.com'
+  ) {
+    addPropertyLink.style.display = 'block'
+  } else {
+    addPropertyLink.style.display = 'none'
+  }
+}
+
+// Call updateAdminUI after login/logout
+// (Removed duplicate declaration of originalUpdateUI)
+authManager.updateUIForLoggedInUser = function () {
+  originalUpdateUI()
+  updateAdminUI()
+}
+
+// Show Add Property Modal
+function showAddPropertyModal() {
+  document.getElementById('add-property-modal').style.display = 'block'
+  document.body.style.overflow = 'hidden'
+}
+
+// Handle Add Property Form Submission
+document.addEventListener('DOMContentLoaded', function () {
+  const addPropertyForm = document.getElementById('add-property-form')
+  if (addPropertyForm) {
+    addPropertyForm.addEventListener('submit', function (e) {
+      e.preventDefault()
+      // Only allow admin
+      if (
+        !authManager.currentUser ||
+        authManager.currentUser.email !== 'sam.mbende2@gmail.com'
+      ) {
+        alert('Only admin can add properties.')
+        return
+      }
+      // Gather form data
+      const newProperty = {
+        id: properties.length + 1,
+        title: document.getElementById('new-title').value,
+        location: document.getElementById('new-location').value,
+        type: document.getElementById('new-type').value,
+        price: parseInt(document.getElementById('new-price').value),
+        rating: 0,
+        reviews: 0,
+        guests: parseInt(document.getElementById('new-guests').value),
+        bedrooms: parseInt(document.getElementById('new-bedrooms').value),
+        bathrooms: parseInt(document.getElementById('new-bathrooms').value),
+        image: document.getElementById('new-image').value,
+        images: [document.getElementById('new-image').value],
+        amenities: [],
+        description: document.getElementById('new-description').value,
+      }
+      properties.push(newProperty)
+      currentProperties = [...properties]
+      displayProperties(currentProperties)
+      closeModal()
+      addPropertyForm.reset()
+      engagementManager.showNotification(
+        'Property Added',
+        'New property has been added successfully!',
+        'success'
+      )
+    })
+  }
+})
+function updateAdminUI() {
+  const addPropertyLink = document.getElementById('add-property-link')
+  if (
+    authManager.currentUser &&
+    authManager.currentUser.email === 'sam.mbende2@gmail.com'
+  ) {
+    addPropertyLink.style.display = 'block'
+  } else {
+    addPropertyLink.style.display = 'none'
+  }
+}
+
+// Ensure updateAdminUI runs after login/logout
+// (Removed duplicate declaration of originalUpdateUI)
+authManager.updateUIForLoggedInUser = function () {
+  originalUpdateUI()
+  updateAdminUI()
+}
+
+// Also run on DOMContentLoaded in case user is already logged in
+document.addEventListener('DOMContentLoaded', updateAdminUI)
+
+function closeModal() {
+  document.querySelectorAll('.modal').forEach((modal) => {
+    modal.style.display = 'none'
+  })
+  document.body.style.overflow = 'auto'
 }

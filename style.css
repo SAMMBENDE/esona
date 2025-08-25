@@ -2736,28 +2736,34 @@ kbd {
 }
 
 /* Help Center styles */
-.help-sections, .safety-sections, .policy-sections {
+.help-sections,
+.safety-sections,
+.policy-sections {
   display: grid;
   gap: 3rem;
 }
 
-.help-section, .safety-section {
+.help-section,
+.safety-section {
   background: #f8f9fa;
   padding: 2rem;
   border-radius: 12px;
 }
 
-.help-section h2, .safety-section h2 {
+.help-section h2,
+.safety-section h2 {
   color: #333;
   margin-bottom: 1.5rem;
 }
 
-.help-items, .safety-features {
+.help-items,
+.safety-features {
   display: grid;
   gap: 1.5rem;
 }
 
-.help-item, .safety-feature {
+.help-item,
+.safety-feature {
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
@@ -2773,7 +2779,8 @@ kbd {
   margin-top: 0.25rem;
 }
 
-.contact-support, .emergency-contact {
+.contact-support,
+.emergency-contact {
   background: #ff385c;
   color: white;
   padding: 2rem;
@@ -2782,7 +2789,8 @@ kbd {
   margin-top: 3rem;
 }
 
-.contact-options, .emergency-info {
+.contact-options,
+.emergency-info {
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -2820,7 +2828,8 @@ kbd {
   border-radius: 12px;
 }
 
-.step-icon, .step-visual {
+.step-icon,
+.step-visual {
   background: #ff385c;
   color: white;
   width: 60px;
@@ -2863,14 +2872,18 @@ kbd {
 }
 
 /* Benefits grid */
-.benefits-grid, .requirements-grid, .values-grid {
+.benefits-grid,
+.requirements-grid,
+.values-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
-.benefit, .requirement, .value {
+.benefit,
+.requirement,
+.value {
   background: white;
   padding: 2rem;
   border-radius: 12px;
@@ -2878,7 +2891,9 @@ kbd {
   text-align: center;
 }
 
-.benefit i, .requirement i, .value i {
+.benefit i,
+.requirement i,
+.value i {
   color: #ff385c;
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -2942,16 +2957,17 @@ kbd {
   .page-header h1 {
     font-size: 2rem;
   }
-  
-  .benefits-grid, .requirements-grid {
+
+  .benefits-grid,
+  .requirements-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .step {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .contact-options {
     flex-direction: column;
     align-items: center;
@@ -2960,4 +2976,88 @@ kbd {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ff385c;
+}
+
+/* Add Property Modal Styles */
+.add-property-content {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 2rem 2.5rem;
+  position: relative;
+  animation: fadeIn 0.3s;
+}
+.add-property-content .close-modal {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 1.7rem;
+  color: #ff385c;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.add-property-content .close-modal:hover {
+  color: #d81b60;
+}
+.add-property-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #ff385c;
+}
+.add-property-form .form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.add-property-form label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.add-property-form input,
+.add-property-form select,
+.add-property-form textarea {
+  margin-top: 0.3rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+.add-property-form input:focus,
+.add-property-form select:focus,
+.add-property-form textarea:focus {
+  border-color: #ff385c;
+  outline: none;
+}
+.add-property-form .add-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  background: #ff385c;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-property-form .add-btn:hover {
+  background: #d81b60;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
