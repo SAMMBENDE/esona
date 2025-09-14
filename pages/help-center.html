@@ -1,150 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help Center - Esona</title>
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <a href="../index.html">
-                        <i class="fas fa-home"></i>
-                        <span>Esona</span>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="../index.html" class="nav-link">Home</a>
-                    <a href="#" class="nav-link">Explore</a>
-                    <a href="#" class="nav-link">Saved</a>
-                    <a href="#" class="nav-link">Trips</a>
-                </div>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <a href="../index.html">
+              <i class="fas fa-home"></i>
+              <span>Esona</span>
+            </a>
+          </div>
+          <div class="nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Explore</a>
+            <a href="#" class="nav-link">Saved</a>
+            <a href="#" class="nav-link">Trips</a>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Main Content -->
     <main class="page-content">
-        <div class="container">
-            <div class="page-header">
-                <h1><i class="fas fa-question-circle"></i> Help Center</h1>
-                <p>Find answers to frequently asked questions and get support</p>
-            </div>
-
-            <div class="help-sections">
-                <div class="help-section">
-                    <h2>Getting Started</h2>
-                    <div class="help-items">
-                        <div class="help-item">
-                            <h3>How to search for properties</h3>
-                            <p>Learn how to find the perfect vacation rental using our search filters and tools.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Creating your account</h3>
-                            <p>Step-by-step guide to setting up your Esona account and profile.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Making your first booking</h3>
-                            <p>Everything you need to know about booking your first stay with Esona.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="help-section">
-                    <h2>Booking & Payments</h2>
-                    <div class="help-items">
-                        <div class="help-item">
-                            <h3>Payment methods</h3>
-                            <p>Accepted payment methods and how to manage your payment information.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Booking modifications</h3>
-                            <p>How to change or cancel your reservation and understand our policies.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Refunds and disputes</h3>
-                            <p>Understanding our refund policy and how to resolve payment issues.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="help-section">
-                    <h2>Host Information</h2>
-                    <div class="help-items">
-                        <div class="help-item">
-                            <h3>Becoming a host</h3>
-                            <p>Learn how to list your property and start hosting guests.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Managing your listing</h3>
-                            <p>Tips for optimizing your property listing and attracting guests.</p>
-                        </div>
-                        <div class="help-item">
-                            <h3>Host protection</h3>
-                            <p>Understanding insurance coverage and protection for hosts.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-support">
-                <h2>Still need help?</h2>
-                <p>Contact our support team for personalized assistance</p>
-                <div class="contact-options">
-                    <button class="contact-btn">
-                        <i class="fas fa-comments"></i>
-                        Live Chat
-                    </button>
-                    <button class="contact-btn">
-                        <i class="fas fa-envelope"></i>
-                        Email Support
-                    </button>
-                    <button class="contact-btn">
-                        <i class="fas fa-phone"></i>
-                        Call Us
-                    </button>
-                </div>
-            </div>
+      <div class="container">
+        <div class="page-header">
+          <h1><i class="fas fa-question-circle"></i> Help Center</h1>
+          <p>Find answers to frequently asked questions and get support</p>
         </div>
+
+        <!-- Getting Started Section -->
+        <section class="faq-section">
+          <h2 class="faq-category">
+            <i class="fas fa-rocket"></i> Getting Started
+          </h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">
+                How to search for properties
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>To find your ideal vacation rental:</p>
+                <ol>
+                  <li>
+                    Enter your destination, dates, and number of guests in the
+                    search bar
+                  </li>
+                  <li>
+                    Use filters to narrow results by property type, price, or
+                    amenities
+                  </li>
+                  <li>Sort results by price, rating, or recommendations</li>
+                  <li>
+                    Click on properties to view more details and check
+                    availability
+                  </li>
+                </ol>
+                <p>
+                  Our advanced search tools help you find exactly what you're
+                  looking for, whether it's a beachfront villa or a city
+                  apartment.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Creating your account
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Step-by-step guide to setting up your Esona account and
+                  profile:
+                </p>
+                <ol>
+                  <li>Click the "Sign Up" button in the top-right corner</li>
+                  <li>Enter your email address and create a secure password</li>
+                  <li>
+                    Verify your email through the confirmation link we send
+                  </li>
+                  <li>
+                    Complete your profile with personal details and preferences
+                  </li>
+                  <li>Add a profile photo to build trust with hosts</li>
+                  <li>Set up your payment methods for faster booking</li>
+                </ol>
+                <p>
+                  A complete profile increases your chances of booking approval
+                  from hosts.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Making your first booking
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Everything you need to know about booking your first stay with
+                  Esona:
+                </p>
+                <ol>
+                  <li>
+                    Find a property you love and check availability for your
+                    dates
+                  </li>
+                  <li>
+                    Review house rules, cancellation policies, and additional
+                    fees
+                  </li>
+                  <li>
+                    Click "Book Now" or "Request to Book" depending on the
+                    listing
+                  </li>
+                  <li>
+                    Complete payment details (you'll only be charged after
+                    confirmation)
+                  </li>
+                  <li>
+                    Communicate with the host through our messaging system
+                  </li>
+                  <li>
+                    Receive booking confirmation with check-in instructions
+                  </li>
+                </ol>
+                <p>
+                  For the best experience, book properties with high ratings and
+                  responsive hosts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Booking & Payments Section -->
+        <section class="faq-section">
+          <h2 class="faq-category">
+            <i class="fas fa-credit-card"></i> Booking & Payments
+          </h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">
+                Payment methods
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>Esona accepts the following payment methods:</p>
+                <ul>
+                  <li>
+                    Major credit and debit cards (Visa, Mastercard, American
+                    Express)
+                  </li>
+                  <li>PayPal</li>
+                  <li>Apple Pay (on iOS devices)</li>
+                  <li>Google Pay (on Android devices)</li>
+                </ul>
+                <p>To manage your payment information:</p>
+                <ol>
+                  <li>Go to your Account Settings</li>
+                  <li>Select "Payment Methods"</li>
+                  <li>Add, remove, or update your payment options</li>
+                </ol>
+                <p>
+                  All payments are securely processed with industry-standard
+                  encryption.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Booking modifications
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>Need to change your reservation? Here's how:</p>
+                <ol>
+                  <li>Go to "Trips" in your account</li>
+                  <li>Select the booking you want to modify</li>
+                  <li>Click "Change reservation"</li>
+                  <li>Adjust dates, guest count, or other details</li>
+                  <li>Submit your request to the host</li>
+                </ol>
+                <p>To cancel a reservation:</p>
+                <ol>
+                  <li>Go to "Trips" in your account</li>
+                  <li>Select the booking you want to cancel</li>
+                  <li>Click "Cancel reservation"</li>
+                  <li>
+                    Review the cancellation policy and any applicable fees
+                  </li>
+                  <li>Confirm cancellation</li>
+                </ol>
+                <p>
+                  Note: Refund amounts depend on the property's cancellation
+                  policy and how far in advance you cancel.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Refunds and disputes
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>Understanding our refund policy:</p>
+                <ul>
+                  <li>
+                    Refunds are processed according to the property's
+                    cancellation policy (Flexible, Moderate, or Strict)
+                  </li>
+                  <li>
+                    Processing times vary by payment method (3-5 business days
+                    for credit cards, 1-2 days for PayPal)
+                  </li>
+                  <li>Service fees may be non-refundable in certain cases</li>
+                </ul>
+                <p>If you encounter a payment issue or dispute:</p>
+                <ol>
+                  <li>First, contact the host through our messaging system</li>
+                  <li>
+                    If unresolved, open a case with Esona Support within 24
+                    hours of check-in
+                  </li>
+                  <li>
+                    Provide documentation or evidence supporting your claim
+                  </li>
+                  <li>Our team will review and help mediate the situation</li>
+                </ol>
+                <p>
+                  Esona's guest guarantee covers significant discrepancies
+                  between listing and actual accommodation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Host Information Section -->
+        <section class="faq-section">
+          <h2 class="faq-category">
+            <i class="fas fa-house-user"></i> Host Information
+          </h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">
+                Becoming a host
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>Learn how to list your property and start hosting guests:</p>
+                <ol>
+                  <li>Click "Become a Host" in your account menu</li>
+                  <li>
+                    Provide details about your property (type, location, size,
+                    amenities)
+                  </li>
+                  <li>Upload high-quality photos (at least 5 recommended)</li>
+                  <li>Set house rules, availability calendar, and pricing</li>
+                  <li>Complete safety and legal requirements</li>
+                  <li>Submit your listing for review</li>
+                </ol>
+                <p>
+                  Once approved, your property will be visible to millions of
+                  potential guests worldwide. Our hosting experts can provide
+                  personalized tips to maximize your listing's potential.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Managing your listing
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Tips for optimizing your property listing and attracting
+                  guests:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Photos:</strong> Use bright, well-composed images
+                    that showcase your property's best features
+                  </li>
+                  <li>
+                    <strong>Title:</strong> Create a compelling, descriptive
+                    title that highlights unique selling points
+                  </li>
+                  <li>
+                    <strong>Description:</strong> Be detailed but concise,
+                    emphasizing special amenities and nearby attractions
+                  </li>
+                  <li>
+                    <strong>Pricing:</strong> Research comparable listings and
+                    consider seasonal adjustments
+                  </li>
+                  <li>
+                    <strong>Instant Book:</strong> Enable this feature to
+                    attract guests who prefer immediate confirmation
+                  </li>
+                  <li>
+                    <strong>Response Time:</strong> Reply to inquiries promptly
+                    to improve your listing ranking
+                  </li>
+                  <li>
+                    <strong>Reviews:</strong> Encourage satisfied guests to
+                    leave positive feedback
+                  </li>
+                </ul>
+                <p>
+                  Regularly update your calendar availability to prevent
+                  declined bookings, which can negatively impact your listing's
+                  visibility.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Host protection
+                <span class="faq-toggle"
+                  ><i class="fas fa-chevron-down"></i
+                ></span>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Understanding insurance coverage and protection for hosts:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Property Damage Protection:</strong> Coverage up to
+                    $1,000,000 for damage caused by guests
+                  </li>
+                  <li>
+                    <strong>Liability Insurance:</strong> Protection against
+                    third-party claims of injury or property damage
+                  </li>
+                  <li>
+                    <strong>Security Deposit:</strong> Option to require a
+                    refundable deposit from guests
+                  </li>
+                  <li>
+                    <strong>Screening Tools:</strong> Access to guest reviews
+                    and verification features
+                  </li>
+                  <li>
+                    <strong>24/7 Support:</strong> Dedicated host support line
+                    for emergencies
+                  </li>
+                </ul>
+                <p>To file a claim:</p>
+                <ol>
+                  <li>Document the damage with photos and descriptions</li>
+                  <li>Contact the guest through our messaging system</li>
+                  <li>
+                    If unresolved, submit a formal claim within 14 days of
+                    checkout
+                  </li>
+                  <li>
+                    Provide receipts or estimates for repair/replacement costs
+                  </li>
+                </ol>
+                <p>
+                  Note: Some exclusions apply. Review the full Host Protection
+                  terms in your account settings.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="contact-support">
+          <h2>Still need help?</h2>
+          <p>Contact our support team for personalized assistance</p>
+          <div class="contact-options">
+            <button class="contact-btn">
+              <i class="fas fa-comments"></i>
+              Live Chat
+            </button>
+            <button class="contact-btn">
+              <i class="fas fa-envelope"></i>
+              Email Support
+            </button>
+            <button class="contact-btn">
+              <i class="fas fa-phone"></i>
+              Call Us
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Esona</h3>
-                    <p>Your trusted partner for premium vacation rentals worldwide.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <a href="help-center.html">Help Center</a>
-                    <a href="safety.html">Safety</a>
-                    <a href="cancellation.html">Cancellation</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <a href="host.html">Host</a>
-                    <a href="refer-friends.html">Refer Friends</a>
-                    <a href="gift-cards.html">Gift Cards</a>
-                </div>
-                <div class="footer-section">
-                    <h4>About</h4>
-                    <a href="how-it-works.html">How it works</a>
-                    <a href="careers.html">Careers</a>
-                    <a href="privacy.html">Privacy</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Esona. All rights reserved.</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Esona</h3>
+            <p>Your trusted partner for premium vacation rentals worldwide.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <a href="help-center.html">Help Center</a>
+            <a href="safety.html">Safety</a>
+            <a href="cancellation.html">Cancellation</a>
+          </div>
+          <div class="footer-section">
+            <h4>Community</h4>
+            <a href="host.html">Host</a>
+            <a href="refer-friends.html">Refer Friends</a>
+            <a href="gift-cards.html">Gift Cards</a>
+          </div>
+          <div class="footer-section">
+            <h4>About</h4>
+            <a href="how-it-works.html">How it works</a>
+            <a href="careers.html">Careers</a>
+            <a href="privacy.html">Privacy</a>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <a
+            href="https://digicorepro.com/contact/"
+            target="_blank"
+            rel="noopener"
+            style="font-size: 0.95rem; color: #ff385c"
+          >
+            Contact Developer
+          </a>
+          <p style="margin-top: 0.5rem">
+            &copy; 2025 Esona. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
-</body>
+
+    <script src="../script.js"></script>
+  </body>
 </html>

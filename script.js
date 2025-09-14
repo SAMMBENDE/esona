@@ -1,3 +1,132 @@
+// Place this at the very beginning of your script.js file (as the first lines)
+
+// Fix for propertiesGrid null error
+function loadProperties() {
+  console.log('Loading properties...')
+  const propertiesGrid = document.getElementById('properties-grid')
+  if (!propertiesGrid) {
+    console.log('Properties grid not found on this page')
+    return
+  }
+
+  propertiesGrid.innerHTML =
+    '<div class="loading"><div class="spinner"></div></div>'
+
+  setTimeout(() => {
+    console.log(
+      'Displaying properties:',
+      currentProperties.length,
+      'properties'
+    )
+    displayProperties(currentProperties)
+  }, 500)
+}
+
+// Fix for setupChat errors
+function setupChat() {
+  const chatToggle = document.getElementById('chat-toggle')
+  const chatWindow = document.getElementById('chat-window')
+
+  // Check if chat elements exist before setting up
+  if (!chatToggle || !chatWindow) {
+    console.log('Chat elements not found on this page')
+    return
+  }
+
+  const chatClose = document.getElementById('chat-close')
+  const chatInput = document.getElementById('chat-input')
+  const chatSend = document.getElementById('chat-send')
+  const chatMessages = document.getElementById('chat-messages')
+
+  let chatOpen = false
+
+  chatToggle.addEventListener('click', () => {
+    // Rest of your chat code...
+  })
+}
+
+// Remove ALL the FAQ event listeners at the end of your file
+// and replace with this single one (place it after the last line):
+
+document.addEventListener('DOMContentLoaded', function () {
+  // DOM Elements for homepage - only access if they exist
+  const propertiesGrid = document.getElementById('properties-grid')
+  if (propertiesGrid) {
+    loadProperties()
+    setupEventListeners()
+    setDefaultDates()
+  }
+
+  // FAQ Accordion - works on all pages
+  const faqQuestions = document.querySelectorAll('.faq-question')
+  console.log('Found FAQ buttons:', faqQuestions.length)
+
+  faqQuestions.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      console.log('FAQ button clicked')
+      const parentItem = this.parentElement
+      parentItem.classList.toggle('active')
+    })
+  })
+})
+
+// Testimonials Carousel
+document.addEventListener('DOMContentLoaded', function () {
+  const testimonialsGrid = document.querySelector('.testimonials-grid')
+  const dots = document.querySelectorAll('.dot')
+
+  if (testimonialsGrid && dots.length && window.innerWidth <= 768) {
+    const cards = testimonialsGrid.querySelectorAll('.testimonial-card')
+
+    // Update active dot based on scroll position
+    testimonialsGrid.addEventListener('scroll', () => {
+      const index = Math.round(
+        testimonialsGrid.scrollLeft / testimonialsGrid.offsetWidth
+      )
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index)
+      })
+    })
+
+    // Scroll to card when dot is clicked
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        testimonialsGrid.scrollTo({
+          left: index * testimonialsGrid.offsetWidth,
+          behavior: 'smooth',
+        })
+      })
+    })
+
+    // Auto-scroll every 5 seconds
+    let autoScrollInterval
+    const startAutoScroll = () => {
+      autoScrollInterval = setInterval(() => {
+        const currentIndex = Math.round(
+          testimonialsGrid.scrollLeft / testimonialsGrid.offsetWidth
+        )
+        const nextIndex = (currentIndex + 1) % cards.length
+        testimonialsGrid.scrollTo({
+          left: nextIndex * testimonialsGrid.offsetWidth,
+          behavior: 'smooth',
+        })
+      }, 5000)
+    }
+
+    // Start auto-scroll
+    startAutoScroll()
+
+    // Pause auto-scroll on user interaction
+    testimonialsGrid.addEventListener('touchstart', () => {
+      clearInterval(autoScrollInterval)
+    })
+
+    testimonialsGrid.addEventListener('touchend', () => {
+      startAutoScroll()
+    })
+  }
+})
+
 // Sample property data
 const properties = [
   {
@@ -2470,9 +2599,9 @@ function updateAdminUI() {
 }
 
 // Ensure updateAdminUI runs after login/logout
-// (Removed duplicate declaration of originalUpdateUI)
+const originalUpdateUI = authManager.updateUIForLoggedInUser
 authManager.updateUIForLoggedInUser = function () {
-  originalUpdateUI()
+  originalUpdateUI.call(authManager)
   updateAdminUI()
 }
 
@@ -2485,3 +2614,46 @@ function closeModal() {
   })
   document.body.style.overflow = 'auto'
 }
+
+// Add this at the very end of your file, after all other code
+document.addEventListener('DOMContentLoaded', function () {
+  // FAQ Accordion functionality
+  document.querySelectorAll('.faq-question').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const item = btn.parentElement
+      item.classList.toggle('active')
+    })
+  })
+})
+
+// Make sure this is the last event handler in your file
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('Setting up FAQ accordions')
+  const faqButtons = document.querySelectorAll('.faq-question')
+  console.log('Found FAQ buttons:', faqButtons.length)
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener('click', function (event) {
+      console.log('FAQ button clicked')
+      event.preventDefault()
+      const item = btn.parentElement
+      item.classList.toggle('active')
+    })
+  })
+})
+
+// Add this code at the VERY END of your file
+document.addEventListener('DOMContentLoaded', function () {
+  // FAQ Accordion functionality
+  const faqQuestions = document.querySelectorAll('.faq-question')
+  console.log('Found FAQ buttons:', faqQuestions.length)
+
+  faqQuestions.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      console.log('FAQ button clicked')
+      e.preventDefault()
+      const parentItem = this.parentElement
+      parentItem.classList.toggle('active')
+    })
+  })
+})
