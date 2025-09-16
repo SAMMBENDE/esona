@@ -73,58 +73,75 @@ document.addEventListener('DOMContentLoaded', function () {
 // Testimonials Carousel
 document.addEventListener('DOMContentLoaded', function () {
   const testimonialsGrid = document.querySelector('.testimonials-grid')
+  const cards = document.querySelectorAll('.testimonial-card')
   const dots = document.querySelectorAll('.dot')
+  let currentIndex = 0
 
-  if (testimonialsGrid && dots.length && window.innerWidth <= 768) {
-    const cards = testimonialsGrid.querySelectorAll('.testimonial-card')
-
-    // Update active dot based on scroll position
-    testimonialsGrid.addEventListener('scroll', () => {
-      const index = Math.round(
-        testimonialsGrid.scrollLeft / testimonialsGrid.offsetWidth
-      )
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index)
+  // Initialize first card and dot as active
+  function initTestimonials() {
+    if (window.innerWidth <= 768) {
+      // Only for mobile
+      cards.forEach((card, index) => {
+        if (index === 0) {
+          card.style.display = 'block'
+          card.style.opacity = '1'
+        } else {
+          card.style.display = 'none'
+          card.style.opacity = '0'
+        }
       })
-    })
-
-    // Scroll to card when dot is clicked
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        testimonialsGrid.scrollTo({
-          left: index * testimonialsGrid.offsetWidth,
-          behavior: 'smooth',
-        })
+      dots[0].classList.add('active')
+    } else {
+      // Reset for desktop
+      cards.forEach((card) => {
+        card.style.display = 'block'
+        card.style.opacity = '1'
       })
-    })
-
-    // Auto-scroll every 5 seconds
-    let autoScrollInterval
-    const startAutoScroll = () => {
-      autoScrollInterval = setInterval(() => {
-        const currentIndex = Math.round(
-          testimonialsGrid.scrollLeft / testimonialsGrid.offsetWidth
-        )
-        const nextIndex = (currentIndex + 1) % cards.length
-        testimonialsGrid.scrollTo({
-          left: nextIndex * testimonialsGrid.offsetWidth,
-          behavior: 'smooth',
-        })
-      }, 5000)
     }
-
-    // Start auto-scroll
-    startAutoScroll()
-
-    // Pause auto-scroll on user interaction
-    testimonialsGrid.addEventListener('touchstart', () => {
-      clearInterval(autoScrollInterval)
-    })
-
-    testimonialsGrid.addEventListener('touchend', () => {
-      startAutoScroll()
-    })
   }
+
+  // Show specific card
+  function showCard(index) {
+    cards.forEach((card, i) => {
+      if (i === index) {
+        card.style.display = 'block'
+        setTimeout(() => {
+          card.style.opacity = '1'
+        }, 50)
+      } else {
+        card.style.opacity = '0'
+        setTimeout(() => {
+          card.style.display = 'none'
+        }, 500)
+      }
+    })
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index)
+    })
+    currentIndex = index
+  }
+
+  // Initialize testimonials
+  initTestimonials()
+
+  // Add click handlers to dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showCard(index)
+    })
+  })
+
+  // Auto-rotate every 5 seconds
+  setInterval(() => {
+    if (window.innerWidth <= 768) {
+      const nextIndex = (currentIndex + 1) % cards.length
+      showCard(nextIndex)
+    }
+  }, 5000)
+
+  // Reset on window resize
+  window.addEventListener('resize', initTestimonials)
 })
 
 // Sample property data
@@ -2311,13 +2328,17 @@ class EngagementManager {
       .map(
         (row) => `
       <div class="comparison-row">
-        <div class="comparison-label">${row.label}</div>
+        <div class="comparison-cell">${
+          row.format
+            ? row.format(this.comparisonItems[0][row.key])
+            : this.comparisonItems[0][row.key]
+        }</div>
         ${this.comparisonItems
           .map(
-            (property) => `
-          <div class="comparison-cell">
-            ${row.format ? row.format(property[row.key]) : property[row.key]}
-          </div>
+            (item) => `
+          <div class="comparison-cell">${
+            row.format ? row.format(item[row.key]) : item[row.key]
+          }</div>
         `
           )
           .join('')}
@@ -2656,4 +2677,38 @@ document.addEventListener('DOMContentLoaded', function () {
       parentItem.classList.toggle('active')
     })
   })
+})
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.innerWidth <= 768) {
+    const cards = document.querySelectorAll('.testimonial-card')
+    const dots = document.querySelectorAll('.dot')
+    let currentCard = 0
+
+    // Show first card initially
+    cards[0].classList.add('active')
+    dots[0].classList.add('active')
+
+    // Function to switch cards
+    function showCard(index) {
+      cards.forEach((card) => card.classList.remove('active'))
+      dots.forEach((dot) => dot.classList.remove('active'))
+
+      cards[index].classList.add('active')
+      dots[index].classList.add('active')
+      currentCard = index
+    }
+
+    // Add click handlers to dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showCard(index))
+    })
+
+    // Auto-rotate cards
+    setInterval(() => {
+      let nextCard = (currentCard + 1) % cards.length
+      showCard(nextCard)
+    }, 5000)
+  }
 })

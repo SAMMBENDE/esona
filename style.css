@@ -37,6 +37,10 @@
   transition: transform 0.3s ease;
 }
 
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
 .testimonial-rating {
   color: #ff385c;
   margin-bottom: 1rem;
@@ -80,19 +84,34 @@
     padding: 3rem 0;
   }
 
+  .testimonials-header h2 {
+    font-size: 2rem;
+  }
+
   .testimonials-grid {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0;
   }
 
   .testimonial-card {
     flex: 0 0 100%;
     width: 100%;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: opacity 0.5s ease;
+    visibility: hidden;
+  }
+
+  .testimonial-card.active {
+    opacity: 1;
+    position: relative;
+    visibility: visible;
   }
 
   /* Navigation Dots */
@@ -100,7 +119,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 1.5rem;
+    margin-top: 20px;
   }
 
   .dot {
@@ -2569,7 +2588,7 @@ kbd {
 
   .testimonials-grid {
     display: flex;
-    overflow-x: hidden; /* Hide overflow */
+    overflow: hidden; /* Hide overflow */
     scroll-snap-type: x mandatory;
     width: 100%; /* Full width */
     position: relative;
@@ -2592,7 +2611,7 @@ kbd {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 1.5rem;
+    margin-top: 20px;
   }
 
   .dot {
@@ -2689,16 +2708,38 @@ kbd {
 }
 
 @media (max-width: 768px) {
-  .testimonials {
-    padding: 3rem 0;
-  }
-
-  .testimonials-header h2 {
-    font-size: 2rem;
-  }
-
   .testimonial-card {
-    padding: 1.5rem;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .testimonial-card.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .testimonials-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: #ff385c;
+    transform: scale(1.2);
   }
 }
 
